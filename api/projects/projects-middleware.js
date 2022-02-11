@@ -9,8 +9,8 @@ const getProjectById = (req, res, next) => {
       if (!project) {
         next({ status: 404, message: `Project ${id} not found` });
       } else {
-        console.log(project);
         req.body = project;
+        console.log(req.body);
         next();
       }
     })
@@ -18,13 +18,14 @@ const getProjectById = (req, res, next) => {
 };
 
 const checkProjectPayload = (req, res, next) => {
-  console.log(req.body);
   if (!req.body.name || !req.body.description) {
     next({
       status: 400,
       message: "Name and description are required fields",
     });
   } else {
+    console.log(req.body.name);
+    console.log(req.body.description);
     next();
   }
 };

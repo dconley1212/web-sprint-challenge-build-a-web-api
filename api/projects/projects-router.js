@@ -33,6 +33,15 @@ router.post("/", checkProjectPayload, (req, res, next) => {
     .catch(next);
 });
 
+router.put("/:id", getProjectById, checkProjectPayload, (req, res, next) => {
+  Projects.update(req.params.id, req.body)
+    .then((project) => {
+      console.log(project);
+      res.status(200).json(project);
+    })
+    .catch(next);
+});
+
 router.use((err, req, res, next) => {
   res.status(err.status || 500).json({
     custom: "something went wrong",

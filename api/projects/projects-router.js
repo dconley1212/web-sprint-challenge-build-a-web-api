@@ -22,7 +22,7 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/:id", getProjectById, (req, res) => {
-  res.json(req.body);
+  res.json(req.project);
 });
 
 router.post("/", checkProjectPayload, (req, res, next) => {
@@ -39,6 +39,22 @@ router.put("/:id", getProjectById, checkProjectPayload, (req, res, next) => {
       console.log(project);
       res.status(200).json(project);
     })
+    .catch(next);
+});
+
+router.delete("/:id", getProjectById, (req, res, next) => {
+  const { id } = req.params;
+
+  Projects.remove(id)
+    .then((project) => res.status(200).json(project))
+    .catch(next);
+});
+
+router.get("/:id/actions", getProjectById, (req, res, next) => {
+  const { id } = req.params;
+
+  Projects.getProjectActions(id)
+    .then((actions) => res.status(200).json(actions))
     .catch(next);
 });
 

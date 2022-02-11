@@ -1,33 +1,34 @@
 // add middlewares here related to projects
+const { OPEN_READWRITE } = require("sqlite3");
 const { get } = require("./projects-model");
 
-const getProjectById = (req, res, next) => {
+function getProjectById(req, res, next) {
   const { id } = req.params;
 
   get(id)
     .then((project) => {
-      if (!project) {
-        next({ status: 404, message: `Project ${id} not found` });
-      } else {
-        req.body = project;
-        console.log(req.body);
+      if (project) {
+        req.project = project;
+        console.log(req.project);
         next();
+      } else {
+        next({ status: 404, message: `Project ${id} not found` });
       }
     })
     .catch(next);
-};
+}
 
-const checkProjectPayload = (req, res, next) => {
-  if (!req.body.name || !req.body.description) {
+function checkProjectPayload(req, res, next) {
+  if (req.body.name && req.body.description) {
+    next();
+  } else if (!req.body.name || !req.body.description || !req.body.completed) {
     next({
       status: 400,
       message: "Name and description are required fields",
     });
   } else {
-    console.log(req.body.name);
-    console.log(req.body.description);
-    next();
+    next({ status: 500, message: "something went wrong" });
   }
-};
+}
 
 module.exports = { getProjectById, checkProjectPayload };

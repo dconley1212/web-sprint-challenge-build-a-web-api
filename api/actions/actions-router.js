@@ -1,6 +1,6 @@
 const express = require("express");
 const { OPEN_READWRITE } = require("sqlite3");
-const { actionsById, checkActionsPayload } = require("./actions-middlware");
+const { actionsById } = require("./actions-middlware");
 const Actions = require("./actions-model");
 const Projects = require("../projects/projects-model");
 
@@ -48,7 +48,8 @@ router.put("/:id", async (req, res, next) => {
     } else if (
       !req.body.project_id ||
       !req.body.description ||
-      !req.body.notes
+      !req.body.notes ||
+      !req.body.completed
     ) {
       next({ status: 400, message: "Missing required fields" });
     } else {

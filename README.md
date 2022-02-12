@@ -92,22 +92,22 @@ The description of the structure and extra information about each _resource_ sto
 
 #### Projects
 
-| Field       | Data Type | Metadata                                                                    |
-| ----------- | --------- | --------------------------------------------------------------------------- |
-| id          | number    | do not provide it when creating projects, the database will generate it     |
-| name        | string    | required                                                                    |
-| description | string    | required                                                                    |
-| completed   | boolean   | not required, defaults to false when creating projects                      |
+| Field       | Data Type | Metadata                                                                |
+| ----------- | --------- | ----------------------------------------------------------------------- |
+| id          | number    | do not provide it when creating projects, the database will generate it |
+| name        | string    | required                                                                |
+| description | string    | required                                                                |
+| completed   | boolean   | not required, defaults to false when creating projects                  |
 
 #### Actions
 
-| Field       | Data Type | Metadata                                                                                         |
-| ----------- | --------- | ------------------------------------------------------------------------------------------------ |
-| id          | number    | do not provide it when creating actions, the database will generate it                           |
-| project_id  | number    | required, must be the id of an existing project                                                  |
-| description | string    | required, up to 128 characters long                                                              |
-| notes       | string    | required, no size limit. Used to record additional notes or requirements to complete the action  |
-| completed   | boolean   | not required, defaults to false when creating actions                                            |
+| Field       | Data Type | Metadata                                                                                        |
+| ----------- | --------- | ----------------------------------------------------------------------------------------------- |
+| id          | number    | do not provide it when creating actions, the database will generate it                          |
+| project_id  | number    | required, must be the id of an existing project                                                 |
+| description | string    | required, up to 128 characters long                                                             |
+| notes       | string    | required, no size limit. Used to record additional notes or requirements to complete the action |
+| completed   | boolean   | not required, defaults to false when creating actions                                           |
 
 ### Database Persistence Helpers
 
@@ -147,7 +147,12 @@ We have provided test data for all the resources.
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. The core features of Node.js and Express and why they are useful.
+   It is javascript's backend language. It is asynchronous and event driven. It is very fast at executing since it was built on Google Chrome's V8 javascript engine. It is highly scalable for any project and doesn't buffer, but it is single threaded. Express is like react but for the backend with node.js. It is extremely useful for making any HTTP requests because it is easy to configure and is specifically built to make these requests more efficient.
 1. Understand and explain the use of Middleware.
+   Middleware are functions that execute outside of a library or package so that process can be executed with less code and be more efficient.
 1. The basic principles of the REST architectural style.
+   Rest is a client-server architecture so the client needs to authenticate itself with every request and REST is cacheable. This means the client, the server, and any intermediary components can cache the resources to improve performance.
 1. Understand and explain the use of Express Routers.
+   An express router is used when you want to have a function create a new router object to handle your requests. They help to split up your code and organize your endpoints for each request.
 1. Describe tooling used to manually test the correctness of an API.
+   There are many different tools like postman, httpie, and insomnia to help test your endpoints on the server you created to make sure the api is working correctly and sending back the correct response.
